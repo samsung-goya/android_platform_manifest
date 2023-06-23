@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+	<!-- TODO: remove intrusive hardware stuff -->
+
+
 	<remote name="T110-android" fetch="https://github.com/T110-android/" />
 	<remove-project name="CyanogenMod/android_hardware_libhardware" />
 	<remove-project name="CyanogenMod/android_hardware_libhardware_legacy" />
