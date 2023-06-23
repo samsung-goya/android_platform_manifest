@@ -1,4 +1,4 @@
-BASEDIR=`dirname $0`
+BASEDIR=`dirname "$_"`
 
 mkdir -p $BASEDIR/proprietary
 
