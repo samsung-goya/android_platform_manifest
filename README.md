@@ -1,38 +1,41 @@
-# Platform Manifest Repository
+# Manifest for SM-T110/SM-T111
 
-## Requirements To Build
+## Requirements
 
-- A decent CPU
-- 8GB of RAM
-- 100GB of storage
+- i7 2nd gen or higher *(recommended, any 64-bit CPU will do)*
+- Ubuntu 18.04 or higher
+- 8GB of RAM *(an extra 2GB of RAM is good for /tmp ramdisk)*
+- Around 120GB of storage
 - JDK 6
-- [Android Build Dependencies](https://source.android.com/setup/build/initializing#setting-up-a-linux-build-environment)
+- [Android build dependencies](https://source.android.com/setup/build/initializing#setting-up-a-linux-build-environment)
 
-## How To Set Up Minimal CM11 Sources
+## Setting up minimal sources
 
-```bash
-repo init --depth=1 -u git://github.com/CyanogenMod/android.git -b cm-11.0
-git clone git://github.com/T110-android/android_platform_manifest.git .repo/local_manifests && rm -rf .repo/local_manifests/.git/
+```text
+repo init -q --depth=1 -u https://github.com/CyanogenMod/android.git -b cm-11.0
+git clone https://github.com/samsung-goya/android_platform_manifest.git .repo/local_manifests
 repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
+source .repo/local_manifests/potf.sh
+rm -rf .repo
 ```
 
-## How To Build
+## Building
 
 ```text
 . build/envsetup.sh
-lunch cm_goya[product = wifi|3g]-[buildtype = eng|user|userdebug]
-mka [target = bacon, otapackage, bootimage etc.]
+lunch cm_goya[wifi,3g]-[build type]
+mka bacon
 ```
 
 **e.g.**
 
-```shell
+```text
 . build/envsetup.sh
 lunch cm_goyawifi-eng
 mka bacon
 ```
 
-## Building Guides
+## Guides *(deprecated)*
 
 [\[GUIDE CM11\] How to build your own CyanogenMod 11.0 ROM from sources for the Nexus 4](https://forum.xda-developers.com/t/guide-cm11-how-to-build-your-own-cyanogenmod-11-0-rom-from-sources-for-the-nexus-4.2515305/)
 
@@ -47,4 +50,4 @@ mka bacon
 - `Assertion 'cnt < (sizeof (_nl_value_type_LC_TIME) / sizeof (_nl_value_type_LC_TIME[0]))' failed.`
   - `export LC_ALL=C`
 
-### Good luck and have fun building CyanogenMod!
+### GLHF building CyanogenMod for your ancient device :P
