@@ -10,7 +10,7 @@
 	<!-- Device Trees -->
 	<project path="device/samsung/goyawifi" remote="samsung-goya" name="android_device_samsung_goyawifi" revision="cm-11.0" />
 	<project path="device/samsung/goya3g" remote="samsung-goya" name="android_device_samsung_goya3g" revision="cm-11.0" />
-  	<project path="device/samsung/goya-common" remote="samsung-goya" name="android_device_samsung_goya-common" revision="cm-11.0" />
+  	<project path="device/samsung/goya-common" remote="samsung-goya" name="android_device_samsung_goya-common" revision="cm-12.1" />
 	
 	<!-- Kernel/Vendor -->
 	<project path="vendor/samsung/goya" remote="T110-android" name="android_vendor_samsung_goya" revision="cm-11.0" />
