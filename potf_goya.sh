@@ -1,4 +1,5 @@
 # Patch CM sources on the fly.
+# Device: goya
 # Run this at the root of sources.
 
 # ---

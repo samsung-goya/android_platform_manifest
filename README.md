@@ -1,7 +1,7 @@
 # Manifest for SM-T110/SM-T111
 
 ## WARNING
-This manifest uses external patching-on-the-fly. Please do not forget to run `source .repo/local_manifests/potf.sh`!!
+This manifest uses external patching-on-the-fly. Please do not forget to run `source .repo/local_manifests/potf_goya.sh`!!
 
 ## Requirements
 
