@@ -1,5 +1,8 @@
 # Manifest for SM-T110/SM-T111
 
+## WARNING
+This manifest uses external patching-on-the-fly. Please do not forget to run `source .repo/local_manifests/potf.sh`!!
+
 ## Requirements
 
 - i7 2nd gen or higher *(recommended, any 64-bit CPU will do)*
