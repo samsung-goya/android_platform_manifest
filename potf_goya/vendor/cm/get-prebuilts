@@ -1,4 +1,9 @@
-BASEDIR=`dirname "$_"`
+if [ -z "$BASH_SOURCE" ]; then
+    echo "ERROR: bash-compatible shell required"
+    exit 1
+fi
+
+BASEDIR=`dirname "$BASH_SOURCE"`
 
 mkdir -p $BASEDIR/proprietary
 
