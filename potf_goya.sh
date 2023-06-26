@@ -19,3 +19,11 @@ source vendor/cm/get-prebuilts
 # ---
 # Patch 2: Stop build system from being picking with JDK
 # ---
+
+# ---
+# Patch 3: Fix angle repo missing .git (issue with CM)
+rm -rf external/chromium_org/third_party/angle
+git clone --branch lollipop-release --single-branch --depth=1 \
+https://android.googlesource.com/platform/external/chromium_org/third_party/angle \
+external/chromium_org/third_party/angle
+# ---
