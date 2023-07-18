@@ -11,6 +11,7 @@ This manifest uses external patching-on-the-fly. Please do not forget to run `ba
 - Around 120GB of storage
 - JDK 7
 - [Android build dependencies](https://source.android.com/setup/build/initializing#setting-up-a-linux-build-environment)
+- Bash compatible shell
 
 ## Setting up minimal sources
 
