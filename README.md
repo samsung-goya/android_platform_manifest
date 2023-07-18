@@ -18,7 +18,7 @@ This manifest uses external patching-on-the-fly. Please do not forget to run `ba
 repo init -q --depth=1 -u https://github.com/CyanogenMod/android.git -b cm-12.1
 git clone -b cm-12.1 https://github.com/samsung-goya/android_platform_manifest.git .repo/local_manifests
 repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
-source .repo/local_manifests/potf.sh
+source .repo/local_manifests/potf_goya.sh
 rm -rf .repo
 ```
 
