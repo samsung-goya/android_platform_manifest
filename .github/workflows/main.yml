@@ -54,6 +54,7 @@ jobs:
         git clone https://github.com/T110-android/android_hardware_libhardware_legacy -b cm-11.0 ~/TWRP/hardware/libhardware_legacy
         export ALLOW_MISSING_DEPENDENCIES=true
         export LC_ALL=C
+        source build/envsetup.sh
         lunch cm_goyawifi-eng
         make -j$(nproc --all) otapackage
     - name: Uploading CyanogenMod builds
