@@ -13,5 +13,5 @@ rm -rf temp_potf
 
 # ---
 # Patch 1: Fix prebuilts path
-source ~/TWRP/vendor/cm/get-prebuilts
+source vendor/cm/get-prebuilts
 # ---
