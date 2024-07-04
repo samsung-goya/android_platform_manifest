@@ -50,6 +50,7 @@ jobs:
         cd ~/TWRP
         rm -rf ~/TWRP/hardware/libhardware_legacy
         rm -rf ~/TWRP/hardware/libhardware
+        rm -rf ~/TWRP/hardware/broadcom/libbt
         git clone https://github.com/T110-android/android_hardware_libhardware -b cm-11.0 ~/TWRP/hardware/libhardware
         git clone https://github.com/T110-android/android_hardware_libhardware_legacy -b cm-11.0 ~/TWRP/hardware/libhardware_legacy
         export ALLOW_MISSING_DEPENDENCIES=true
