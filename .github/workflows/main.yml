@@ -53,7 +53,7 @@ jobs:
         rm -rf ~/TWRP/hardware/broadcom/libbt
         git clone https://github.com/T110-android/android_hardware_libhardware -b cm-11.0 ~/TWRP/hardware/libhardware
         git clone https://github.com/T110-android/android_hardware_libhardware_legacy -b cm-11.0 ~/TWRP/hardware/libhardware_legacy
-        git clone -b cm-11.0 https://github.com/samsung-goya/android_platform_manifest.git ~/TWRP/local_manifests
+        git clone -b cm-11.0-notnoelchannel https://github.com/samsung-goya/android_platform_manifest.git ~/TWRP/local_manifests
         cd ~/TWRP/local_manifests
         bash ~/TWRP/local_manifests/potf_goya.sh
         cd ~/TWRP
