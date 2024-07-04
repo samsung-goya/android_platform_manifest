@@ -34,7 +34,7 @@ jobs:
         curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
         python3 ~/.bin/repo init --depth=1 -u https://github.com/CyanogenMod/android -b cm-11.0
         git clone https://github.com/T110-android/android_device_samsung_goyawifi -b cm-11.0 ~/TWRP/device/samsung/goyawifi
-        git clone https://github.com/samsung-goya/android_device_samsung_goya-common -b cm-11.0 ~/TWRP/device/samsung/goya-common
+        git clone https://github.com/samsung-goya/android_device_samsung_goya-common -b cm-11.0-notnoelchannel ~/TWRP/device/samsung/goya-common
         git clone https://github.com/T110-android/android_kernel_samsung_goya -b cm-11.0 ~/TWRP/kernel/samsung/goya
         git clone https://github.com/T110-android/android_vendor_samsung_goya -b cm-11.0 ~/TWRP/vendor/samsung/goya
         git clone https://github.com/T110-android/android_device_samsung_marvell-common -b cm-11.0 ~/TWRP/device/samsung/marvell-common
