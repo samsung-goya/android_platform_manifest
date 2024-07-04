@@ -1,0 +1,63 @@
+name: CyanogenMod CI
+
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    name: TWRP Build CI
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04]
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Cleanup
+      uses: rokibhasansagar/slimhub_actions@main
+      
+    - name: Installing Build Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install bc axel bison build-essential ccache curl flex g++-multilib gcc-multilib python python2 git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
+        sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+        python -V
+    - name: Installing OpenJDK 7
+      run: |
+        sudo apt install java-common libxi6 libxtst6
+        wget https://cdn.azul.com/zulu/bin/zulu7.56.0.11-ca-jdk7.0.352-linux_amd64.deb
+        sudo dpkg -i zulu7.56.0.11-ca-jdk7.0.352-linux_amd64.deb
+    - name: Syncing CyanogenMod sources
+      run: |
+        mkdir ~/TWRP
+        cd ~/TWRP
+        mkdir ~/.bin
+        curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
+        python3 ~/.bin/repo init --depth=1 -u https://github.com/CyanogenMod/android -b cm-11.0
+        git clone https://github.com/T110-android/android_device_samsung_goyawifi -b cm-11.0 ~/TWRP/device/samsung/goyawifi
+        git clone https://github.com/samsung-goya/android_device_samsung_goya-common -b cm-11.0 ~/TWRP/device/samsung/goya-common
+        git clone https://github.com/T110-android/android_kernel_samsung_goya -b cm-11.0 ~/TWRP/kernel/samsung/goya
+        git clone https://github.com/T110-android/android_vendor_samsung_goya -b cm-11.0 ~/TWRP/vendor/samsung/goya
+        git clone https://github.com/T110-android/android_device_samsung_marvell-common -b cm-11.0 ~/TWRP/device/samsung/marvell-common
+        git clone https://github.com/T110-android/android_hardware_marvell -b cm-11.0 ~/TWRP/hardware/marvell
+        git clone https://github.com/T110-android/android_vendor_marvell_external -b cm-11.0 ~/TWRP/vendor/marvell/external
+        python3 ~/.bin/repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
+    - name: Building CyanogenMod
+      run: |
+        OLDPATH=$PATH
+        OLDJAVAHOME=$JAVA_HOME
+        export PATH="$HOME/.jdk_7/java-se-7u75-ri/bin:$PATH"
+        export JAVA_HOME="$HOME/.jdk_7/java-se-7u75-ri"
+        cd ~/TWRP
+        rm -rf ~/TWRP/hardware/libhardware_legacy
+        rm -rf ~/TWRP/hardware/libhardware
+        git clone https://github.com/T110-android/android_hardware_libhardware -b cm-11.0 ~/TWRP/hardware/libhardware
+        git clone https://github.com/T110-android/android_hardware_libhardware_legacy -b cm-11.0 ~/TWRP/hardware/libhardware_legacy
+        export ALLOW_MISSING_DEPENDENCIES=true
+        export LC_ALL=C
+        lunch cm_goyawifi-eng
+        make -j$(nproc --all) otapackage
+    - name: Uploading CyanogenMod builds
+      uses: actions/upload-artifact@v2
+      with:
+        name: cyanogen
+        path: /home/runner/TWRP/out/target/product/goyawifi/*.zip
