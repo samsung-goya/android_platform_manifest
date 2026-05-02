@@ -1,4 +1,4 @@
-# Manifest for SM-T110/SM-T111
+# LineageOS 11 Manifest for SM-T110/SM-T111
 
 ## Minimum requirements
 
@@ -13,7 +13,7 @@
 
 ```text
 repo init -q --depth=1 -u https://github.com/LineageOS/android.git -b cm-11.0
-git clone https://github.com/samsung-goya/android_platform_manifest.git .repo/local_manifests
+git clone --branch cm-11.0 https://github.com/samsung-goya/android_platform_manifest.git .repo/local_manifests
 repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
 rm -rf .repo
 ```
@@ -22,7 +22,7 @@ rm -rf .repo
 
 ```text
 . build/envsetup.sh
-lunch cm_goya[wifi,3g]-[build type]
+lunch cm_goyawifi-[build type]
 mka bacon
 ```
 
@@ -49,4 +49,4 @@ mka bacon
 - `Assertion 'cnt < (sizeof (_nl_value_type_LC_TIME) / sizeof (_nl_value_type_LC_TIME[0]))' failed.`
   - `export LC_ALL=C`
 
-### GLHF building CyanogenMod for your ancient device :P
+### GLHF building LineageOS for your ancient device :P
